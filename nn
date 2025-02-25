@@ -1,0 +1,18 @@
+def Tanh(z):
+    return (2 / (1 + 2.718281828459045 ** (-2 * z))) - 1
+def Neural_Network(z, w1, w2, b1, b2):
+    h_in = [sum(z[i] * w1[i][j] for i in range(len(z))) + b1 for j in range(len(w1[0]))]
+    h_out = [Tanh(value) for value in h_in]
+    y_in = sum(h_out[j] * w2[j][0] for j in range(len(w2))) + b2
+    y_out = Tanh(y_in)
+    return y_out
+z = [1.0, 0.5]
+w1 = [[0.2, 0.5, 0.3],
+      [0.4, 0.5, 0.2]]
+w2 = [[0.4],
+      [0.5],
+      [0.3]]
+b1 = 0.5
+b2 = 0.7
+result = Neural_Network(z, w1, w2, b1, b2)
+print(result)
